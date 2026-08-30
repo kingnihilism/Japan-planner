@@ -1,5 +1,9 @@
 # Japan 2028 Travel Planner — V11
 
+### Mobile backup controls
+
+On phones and tablets, use the **DATA & BACKUPS** button in the page header to access Export JSON, Import full backup, Merge Social Finds, and Reset sample data.
+
 A local-first trip command center built with vanilla HTML, CSS, and JavaScript. Its authoritative itinerary and figures come from the corrected **Japan 2028 Trip** spreadsheet.
 
 ## V11 location update
