@@ -1,10 +1,16 @@
-# Japan 2028 Travel Planner — V11🍙
+# Japan 2028 Travel Planner — V12
 
 ### Mobile backup controls
 
 On phones and tablets, use the **DATA & BACKUPS** button in the page header to access Export JSON, Import full backup, Merge Social Finds, and Reset sample data.
 
 A local-first trip command center built with vanilla HTML, CSS, and JavaScript. Its authoritative itinerary and figures come from the corrected **Japan 2028 Trip** spreadsheet.
+
+## V12 departure-date update
+
+- Outbound departure is now March 14, 2028, with arrival in Japan on March 15.
+- The countdown, flight tracker, deadline seed, and existing saved V11 data migrate automatically.
+- The in-Japan daily itinerary remains March 15–31 and the lodging plan remains 16 nights.
 
 ## V11 location update
 
@@ -42,7 +48,7 @@ Open `index.html` in a modern browser. If local-file restrictions interfere, run
 
 ## Full scope
 
-- March 15–31, 2028 countdown and 16-night route
+- March 14, 2028 departure countdown and 16-night Japan route
 - Editable expense manager seeded with the corrected $6,457 budget
 - Estimated and actual costs, paid status, due dates, notes, automatic totals, and budget warnings
 - $807.13 post-graduation savings schedule with an editable current-savings amount
@@ -74,7 +80,7 @@ Open `index.html` in a modern browser. If local-file restrictions interfere, run
 - Searchable capsule packing system
 - Editable practical Tips
 - LocalStorage persistence plus versioned JSON import/export
-- Automatic migration of V1–V8 records, including Travel Ops data introduced in V8
+- Automatic migration of V1–V11 records, including Travel Ops data introduced in V8
 
 ## Privacy and backups
 
