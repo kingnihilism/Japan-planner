@@ -1,4 +1,4 @@
-# Japan 2028 Travel Planner — V11
+# Japan 2028 Travel Planner — V11🍙
 
 ### Mobile backup controls
 
