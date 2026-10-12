@@ -14,7 +14,7 @@ const server = http.createServer((req, res) => {
 });
 (async () => {
   await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
-  const browser = await chromium.launch({headless:true});
+  const browser = await chromium.launch({headless:true,...(process.env.CHROMIUM_PATH?{executablePath:process.env.CHROMIUM_PATH,args:['--no-sandbox']}: {})});
   try {
     const page = await browser.newPage();
     const errors = [];
@@ -22,7 +22,7 @@ const server = http.createServer((req, res) => {
     const url = `http://127.0.0.1:${server.address().port}`;
     await page.goto(url);
     await page.locator('[data-view="logistics"]').click();
-    assert.equal(await page.locator('[data-show-address]').count(), 4);
+    assert.equal(await page.locator('#logisticsView [data-show-address]').count(), 4);
     assert.equal(await page.locator('.transition-card').count(), 4);
     await page.locator('[data-transition-task="move1:0"]').check();
     await page.reload();
@@ -44,7 +44,7 @@ const server = http.createServer((req, res) => {
     await page.locator('[name="addressJa"]').fill('東京都テスト住所 <img src=x onerror=alert(1)>');
     await page.locator('[name="sourceUrl"]').fill('https://example.com/address');
     await page.locator('#logisticsForm button.primary').click();
-    await page.locator('[data-show-address="0"]').click();
+    await page.locator('#logisticsView [data-show-address="0"]').click();
     assert.match(await page.locator('#addressCardBody').innerText(), /<img src=x/);
     assert.equal(await page.locator('#addressCardBody img').count(), 0);
     await page.keyboard.press('Escape');
@@ -82,10 +82,35 @@ const server = http.createServer((req, res) => {
     await page.setViewportSize({width:390,height:844});
     await page.locator('[data-view="logistics"]').click();
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth),true);
-    await page.locator('[data-show-address="3"]').click();
+    await page.locator('#logisticsView [data-show-address="3"]').click();
     assert.equal(await page.locator('#addressCardModal').isVisible(),true);
     await page.screenshot({path:path.join(root,'../v13-mobile.png'),fullPage:true});
+    await page.keyboard.press('Escape');
+    await page.locator('[data-view="today"]').click();
+    await page.locator('#mobileDataToggle').click();
+    assert.equal(await page.locator('.tools.mobile-open').isVisible(),true);
+    await page.locator('#mobileDataToggle').click();
+    await page.locator('#todayDate').selectOption('2028-03-21');
+    assert.match(await page.locator('#todayHotel').innerText(), /Kadensho/);
+    await page.locator('[data-view="places"]').click();
+    await page.locator('[data-schedule-place="p1"]').click();
+    assert.equal(await page.locator('#planTitle').inputValue(),'Azabu-Juban Shopping District');
+    assert.equal(await page.locator('#planDate').inputValue(),'2028-03-21');
+    await page.locator('#backupTitle').fill('Indoor museum');
+    await page.locator('#backupCost').fill('5');
+    await page.locator('#backupCurrency').selectOption('USD');
+    await page.locator('#itineraryForm button.primary').click();
+    await page.locator('[data-view="today"]').click();
+    await page.locator('#todayPlans [data-toggle-backup]').click();
+    assert.match(await page.locator('#todayPlans').innerText(),/Indoor museum/);
+    assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth),true);
+    await page.evaluate(() => window.scrollTo(0,0));
+    await page.screenshot({path:path.join(root,'../v13-today-mobile.png'),fullPage:false});
+    await page.setViewportSize({width:1280,height:900});
+    await page.screenshot({path:path.join(root,'../v13-today-desktop.png'),fullPage:false});
+    await page.locator('#todayPlans [data-edit-itinerary]').click();
+    await page.screenshot({path:path.join(root,'../v13-itinerary-editor.png'),fullPage:false});
     assert.deepEqual(errors,[]);
-    console.log('PASS: saved checklists, transfer editing, baggage warnings, safe address rendering, JSON backup/restore, sample reset, V12 migration, validation, mobile layout; no page errors.');
+    console.log('PASS: saved checklists, transfer editing, baggage warnings, safe address rendering, JSON backup/restore, sample reset, V12 migration, validation, daily hotel view, Place scheduling, backup switching, mobile layout; no page errors.');
   } finally { await browser.close(); server.close(); }
 })().catch(e => { console.error(e); server.close(); process.exitCode = 1; });
