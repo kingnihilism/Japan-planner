@@ -6,6 +6,15 @@ On phones and tablets, use the **DATA & BACKUPS** button in the page header to a
 
 A local-first trip command center built with vanilla HTML, CSS, and JavaScript. Its authoritative itinerary and figures come from the corrected **Japan 2028 Trip** spreadsheet.
 
+## More V13 planning tools
+
+- **Today in Japan**: choose a trip day to preview the overnight hotel/address, transfer route and luggage notes, activity times, maps, transit details, weather/laundry notes and bookings. Japan Today uses Asia/Tokyo dates; outside the trip it offers a clearly labeled preview. March 21 uses Kadensho, March 22–25 Kyoto Shichijo, March 26–30 Namba, and March 31 is checkout/departure.
+- **Places → Schedule**: prefill an itinerary form with the saved name, city, neighborhood and notes. Select the date/time and save; the Place remains in your collection. Empty address, price and transit fields are left for you to complete.
+- **Backup activities**: add an alternative in the itinerary editor, optionally filling it from a saved Place. Use Backup / Use Primary changes the active plan and its displayed cost while retaining the original. Switching does not cancel reservations, and the backup has a flexible time.
+- **Bookings → Budget**: explicitly select an existing expense in the booking editor. Reserved/Paid booking amounts replace that expense's manual actual in displayed budget totals; Paid bookings contribute to paid totals. Several bookings can share an expense and are summed once. Planned/Cancelled contribute zero. Estimates remain unchanged, currency conversions follow the planning rate, and unlinking restores manual values. Deleting an expense unlinks its bookings. Unlinked bookings do not affect Budget.
+- Existing V13 backups remain compatible. Scheduling notes, alternatives and booking links persist through saves and JSON imports/exports. Asset query strings are refreshed while the app remains V13.
+- Fixed booking-value totals to read booking `price`, and made itinerary dates independent of the device timezone.
+
 ## V13 logistics update
 
 All new tools are in **Logistics**:
@@ -118,6 +127,7 @@ The test starts its own local server, uses a separate headless browser, and does
 ```sh
 npm install --no-save --package-lock=false jsdom
 node tests/logistics-dom.cjs
+node tests/planning-dom.cjs
 ```
 
-These execute the real application with a DOM to verify form saves, migration, persistence, baggage warnings and safe address rendering. They do not verify visual layout.
+These execute the real application with a DOM to verify form saves, migration, persistence, baggage warnings and safe address rendering. The planning checks also cover Japan timezone boundaries, daily hotel selection, scheduling saved Places, primary/backup switching, booking links and currency/payment changes. They do not verify visual layout.
