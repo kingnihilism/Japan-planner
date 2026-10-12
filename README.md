@@ -136,3 +136,9 @@ node tests/research-scheduling-dom.cjs
 ```
 
 These execute the real application with a DOM to verify form saves, migration, persistence, baggage warnings and safe address rendering. The planning checks also cover Japan timezone boundaries, daily hotel selection, scheduling saved Places, primary/backup switching, booking links and currency/payment changes. They do not verify visual layout.
+
+## Tips categories
+
+The Add/Edit Tip dropdown includes Transit, Money, Dining, Shopping, Hotels, Onsen, Temples & Shrines, Etiquette, Language, Connectivity, Airports, Reservations, Luggage, Packing, Weather, Solo Travel, Safety, Emergencies, Accessibility, Health, Customs, and Other. Existing tips and legacy/imported category labels are preserved when editing and in JSON backups. No sample tips are added or replaced.
+
+Optional category regression check (after installing jsdom): `node tests/tips-categories-dom.cjs`.
