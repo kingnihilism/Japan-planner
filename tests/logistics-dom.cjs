@@ -5,12 +5,12 @@ const assert=require('node:assert/strict');
 const root=path.resolve(__dirname,'..');
 const html=fs.readFileSync(path.join(root,'index.html'),'utf8');
 const script=fs.readFileSync(path.join(root,'app.js'),'utf8');
-function create(state){const dom=new JSDOM(html,{url:'http://localhost',runScripts:'outside-only',pretendToBeVisual:true});if(state)dom.window.localStorage.setItem('marcyJapan2028PlannerV1',JSON.stringify(state));dom.window.confirm=()=>true;dom.window.eval(script);return dom}
+function create(state){const dom=new JSDOM(html,{url:'http://localhost',runScripts:'outside-only',pretendToBeVisual:true});if(state)dom.window.localStorage.setItem('marcyJapan2028PlannerV1',JSON.stringify(state));dom.window.scrollTo=()=>{};dom.window.confirm=()=>true;dom.window.eval(script);return dom}
 let dom=create(),w=dom.window,d=w.document;
 const read=()=>JSON.parse(w.localStorage.getItem('marcyJapan2028PlannerV1'));
 const edit=(kind,id,values)=>{w.openLogisticsEditor(kind,id);for(const [name,value] of Object.entries(values))d.querySelector(`[name="${name}"]`).value=value;d.querySelector('#logisticsForm').dispatchEvent(new w.Event('submit',{bubbles:true,cancelable:true}))};
 assert.equal(d.querySelectorAll('.transition-card').length,4);
-assert.equal(d.querySelectorAll('[data-show-address]').length,4);
+assert.equal(d.querySelectorAll('#logisticsView [data-show-address]').length,4);
 let task=d.querySelector('[data-transition-task="move1:0"]');task.checked=true;task.dispatchEvent(new w.Event('change',{bubbles:true}));
 assert.equal(read().transitions[0].tasks[0].done,true);
 edit('transition','move1',{checkout:'10:00',carry:'Five-night capsule'});
