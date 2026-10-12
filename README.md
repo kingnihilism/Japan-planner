@@ -6,6 +6,10 @@ On phones and tablets, use the **DATA & BACKUPS** button in the page header to a
 
 A local-first trip command center built with vanilla HTML, CSS, and JavaScript. Its authoritative itinerary and figures come from the corrected **Japan 2028 Trip** spreadsheet.
 
+## Direct scheduling from Research
+
+In **Research**, mark a record **Source verified**, then use **Schedule Activity**. Unverified records show **Verify to Schedule** instead. Saved **Places** retain their Schedule button. Both open the itinerary editor with the title, city, neighborhood, notes, category and tags filled in. Research source links are retained as clickable activity references; Map-type sources also fill the map link. Choose a date/time and save to create the activity without removing or changing the original find. Multi-city/general finds use Other and preserve their full location in notes instead of silently choosing a city. Addresses, prices and transit details are not guessed when the saved record lacks them. Source references survive edits, saves and JSON backup imports.
+
 ## More V13 planning tools
 
 - **Today in Japan**: choose a trip day to preview the overnight hotel/address, transfer route and luggage notes, activity times, maps, transit details, weather/laundry notes and bookings. Japan Today uses Asia/Tokyo dates; outside the trip it offers a clearly labeled preview. March 21 uses Kadensho, March 22–25 Kyoto Shichijo, March 26–30 Namba, and March 31 is checkout/departure.
@@ -128,6 +132,7 @@ The test starts its own local server, uses a separate headless browser, and does
 npm install --no-save --package-lock=false jsdom
 node tests/logistics-dom.cjs
 node tests/planning-dom.cjs
+node tests/research-scheduling-dom.cjs
 ```
 
 These execute the real application with a DOM to verify form saves, migration, persistence, baggage warnings and safe address rendering. The planning checks also cover Japan timezone boundaries, daily hotel selection, scheduling saved Places, primary/backup switching, booking links and currency/payment changes. They do not verify visual layout.
