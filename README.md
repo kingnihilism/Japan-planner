@@ -1,10 +1,21 @@
-# Japan 2028 Travel Planner — V12
+# Japan 2028 Travel Planner — V13
 
 ### Mobile backup controls
 
 On phones and tablets, use the **DATA & BACKUPS** button in the page header to access Export JSON, Import full backup, Merge Social Finds, and Reset sample data.
 
 A local-first trip command center built with vanilla HTML, CSS, and JavaScript. Its authoritative itinerary and figures come from the corrected **Japan 2028 Trip** spreadsheet.
+
+## V13 logistics update
+
+All new tools are in **Logistics**:
+
+- Four editable Japanese hotel address cards with a large Show Address dialog, copy control and official source links. Source details were checked October 12, 2026; recheck before travel.
+- Four editable hotel/airport transfer plans for March 21, 22, 26 and 31, including checkout, arrival target, route, luggage handoff, essentials and saved readiness checklists.
+- Separate outbound and return baggage plans, initially one and two checked suitcases. Enter your airline/fare, purchased bag allowance, per-suitcase weight limit, measured weights and shopping reserve. Airline limits start blank; they are not inferred from the planned bag count.
+- Existing editable hotel dining details remain available inside each accommodation card.
+- V1–V12 data migrates to V13 using the same browser storage key. New logistics data is included in JSON backups and is preserved by Reset Sample Data.
+- The existing packing inventory is preserved. Its older duffel references can be edited if replacing it with a second spinner.
 
 ## V12 departure-date update
 
@@ -89,3 +100,24 @@ Data remains on the current browser and device unless exported. Clearing site da
 ## Design
 
 The red, black, cream, and yellow interface uses an original graphic language inspired by stylish Japanese game menus. It does not reproduce Atlus artwork, characters, logos, fonts, music, or other proprietary assets.
+
+## Optional V13 browser checks
+
+The app still runs by opening `index.html`. To run the regression checks separately, install Node.js and run from this folder:
+
+```sh
+npm install --no-save --package-lock=false playwright
+npx playwright install chromium
+node tests/logistics.cjs
+```
+
+The test starts its own local server, uses a separate headless browser, and does not touch your regular browser data. It checks checklist persistence, transfer editing, per-bag and bag-count warnings, safe address display, downloadable JSON backup and UI restore, preservation during sample reset, V12 migration, malformed-data handling, and phone-width layout. Browser installation may require system libraries; on supported Linux systems use `npx playwright install --with-deps chromium`.
+
+### DOM checks without a browser download
+
+```sh
+npm install --no-save --package-lock=false jsdom
+node tests/logistics-dom.cjs
+```
+
+These execute the real application with a DOM to verify form saves, migration, persistence, baggage warnings and safe address rendering. They do not verify visual layout.
