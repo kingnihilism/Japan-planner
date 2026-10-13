@@ -150,3 +150,9 @@ Use the header Theme selector to choose **P5 Royal** (default red, cream and gol
 The theme is a per-browser preference stored separately under `marcyJapan2028PlannerTheme`. It is restored before the page paints, survives reload and sample-data resets, and is not part of trip JSON backups. Invalid preferences fall back to P5 Royal; when storage is blocked, switching still works for the current visit. The planner remains V13 with no build step.
 
 Optional theme browser checks: `node tests/themes.cjs` after installing Playwright and Chromium using the existing instructions. Set `CHROMIUM_PATH` to an installed Chromium executable if needed.
+
+## Multiline notes and lists
+
+Notes retain typed line breaks, blank lines and indentation in their displayed cards, including Tips, Research, Places, Social Finds, itinerary/transit notes, Bookings, Budget notes, deadlines, packing, Travel Ops and Logistics. Type each bullet or numbered item on its own line. This is plain-text formatting, not Markdown rendering; HTML remains escaped. Existing saved text and JSON backups are unchanged.
+
+Optional browser regression check: `node tests/multiline-notes.cjs` after installing Playwright and Chromium with the instructions above.
