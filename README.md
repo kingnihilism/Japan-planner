@@ -142,3 +142,11 @@ These execute the real application with a DOM to verify form saves, migration, p
 The Add/Edit Tip dropdown includes Transit, Money, Dining, Shopping, Hotels, Onsen, Temples & Shrines, Etiquette, Language, Connectivity, Airports, Reservations, Luggage, Packing, Weather, Solo Travel, Safety, Emergencies, Accessibility, Health, Customs, and Other. Existing tips and legacy/imported category labels are preserved when editing and in JSON backups. No sample tips are added or replaced.
 
 Optional category regression check (after installing jsdom): `node tests/tips-categories-dom.cjs`.
+
+## Persona-inspired color themes
+
+Use the header Theme selector to choose **P5 Royal** (default red, cream and gold), **P4 Revival** (yellow and orange), or **P3 Reload** (blue, cyan and navy). These are original color palettes inspired by the series, not recreations of game artwork or interfaces. Text, active navigation, warnings, controls and modal accents adapt to the chosen palette; the layout and trip data stay the same.
+
+The theme is a per-browser preference stored separately under `marcyJapan2028PlannerTheme`. It is restored before the page paints, survives reload and sample-data resets, and is not part of trip JSON backups. Invalid preferences fall back to P5 Royal; when storage is blocked, switching still works for the current visit. The planner remains V13 with no build step.
+
+Optional theme browser checks: `node tests/themes.cjs` after installing Playwright and Chromium using the existing instructions. Set `CHROMIUM_PATH` to an installed Chromium executable if needed.
