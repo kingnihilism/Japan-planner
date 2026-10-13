@@ -51,3 +51,6 @@
 .theme-picker select:focus-visible{outline-color:var(--accent-text)!important}
 @media(max-width:650px){main>header{flex-wrap:wrap;align-items:start}main>header>div:first-child{width:100%}.header-actions{display:flex;width:100%;flex-wrap:wrap;justify-content:flex-start;align-items:end;gap:10px}.header-actions .primary{margin-left:auto}.theme-picker{min-width:145px;max-width:170px}.header-actions .mobile-data-button{min-height:44px}}
 @media print{.theme-picker{display:none!important}}
+
+/* Preserve the line breaks and indentation entered in notes and lists. */
+.view p,.view small,.address-card #addressCardBody p{white-space:pre-wrap;overflow-wrap:anywhere}
