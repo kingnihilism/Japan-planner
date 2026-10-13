@@ -156,3 +156,41 @@ Optional theme browser checks: `node tests/themes.cjs` after installing Playwrig
 Notes retain typed line breaks, blank lines and indentation in their displayed cards, including Tips, Research, Places, Social Finds, itinerary/transit notes, Bookings, Budget notes, deadlines, packing, Travel Ops and Logistics. Type each bullet or numbered item on its own line. This is plain-text formatting, not Markdown rendering; HTML remains escaped. Existing saved text and JSON backups are unchanged.
 
 Optional browser regression check: `node tests/multiline-notes.cjs` after installing Playwright and Chromium with the instructions above.
+
+## Five-module Travel Ops expansion (V13)
+
+Five additional tabs sit alongside the existing Transit Passes, Meds + Customs, Emergency, Document Index and Weather + Laundry tabs:
+
+- Connectivity + Payments
+- Luggage Operations, including editable forwarding records and delivery status
+- Disruption + Backups
+- KIX Departure
+- Offline Access
+
+A Jump to Section dropdown reaches all ten tabs directly. On phones, the existing backup controls are available through the compact Data & Backups header menu so operational details appear sooner.
+
+Every new module has editable/deletable checklist tasks, optional multiline notes, a Needs Attention flag, a last-updated timestamp, collapsible sections and 44px-or-larger tap targets. Status is automatic: untouched modules are Not Started; edited or partially completed modules are In Progress; completed checklists are Ready once forwarding records, if any, are Delivered/Collected. Any flagged task/module or problem delivery overrides readiness as Needs Attention. Empty/deleted checklists are preserved; defaults are never merged back into edited data.
+
+### Separate storage and backups
+
+The existing planner key and records are retained. New modules use these independent keys (written only when you edit/reset/import that module):
+
+| Module | Storage key |
+|---|---|
+| Connectivity + Payments | `marcyJapan2028TravelOpsConnectivityV1` |
+| Luggage Operations | `marcyJapan2028TravelOpsLuggageV1` |
+| Disruption + Backups | `marcyJapan2028TravelOpsDisruptionsV1` |
+| KIX Departure | `marcyJapan2028TravelOpsKixV1` |
+| Offline Access | `marcyJapan2028TravelOpsOfflineV1` |
+
+Full Export JSON includes a versioned `travelOpsExpansion` package alongside the existing trip backup. Import validates all supplied modules before writing; storage-write failures attempt to restore previously written keys and do not report success. Older backups without this package leave all five new modules intact. If the package includes only some modules, only those modules are restored. Module resets affect only their own key; the old Reset Sample Data leaves these modules intact. Editing modules does not rewrite Bookings, Logistics, Research, Places, Tips, Itinerary or the existing Travel Ops records.
+
+Unreadable/unsupported stored modules are kept intact and locked rather than silently replaced. Download Stored Copy preserves their raw text for recovery; Reset This Module requires explicit confirmation. Concurrent edits from another tab are loaded before retrying, instead of overwriting an unseen change.
+
+### Offline information and privacy
+
+There is no service worker or explicit offline cache configured by this expansion. While the planner page is already loaded, the new modules use local data and require no network calls. A fresh opening/reload of the hosted planner without internet is not guaranteed. For offline reopening, keep a local copy of `index.html`, `app.js`, `styles.css` and `travel-ops.js` in one folder, or save **Download Ops Notes** as a plain-text reference on your device. That text export includes only the five new modules; it does not copy your existing emergency/medical fields.
+
+Checklist completion is a manual readiness record, not proof that an external map or document was downloaded. Test those materials separately. New forms accept reference locations and general notes; there are no card-number, password, document-upload or medical-detail fields. Do not paste secrets into free-text notes.
+
+Run the acceptance checks with `node tests/travel-ops-expansion.cjs` after installing Playwright/Chromium using the existing instructions. `CHROMIUM_PATH` can select an installed browser executable.
