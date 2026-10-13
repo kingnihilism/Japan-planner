@@ -23,7 +23,7 @@ const server = http.createServer((req, res) => {
     await page.goto(url);
     await page.locator('[data-view="logistics"]').click();
     assert.equal(await page.locator('#logisticsView [data-show-address]').count(), 4);
-    assert.equal(await page.locator('.transition-card').count(), 4);
+    assert.equal(await page.locator('.transition-card').count(), 5);
     await page.locator('[data-transition-task="move1:0"]').check();
     await page.reload();
     await page.locator('[data-view="logistics"]').click();
@@ -32,7 +32,7 @@ const server = http.createServer((req, res) => {
     await page.locator('[name="checkout"]').fill('10:00');
     await page.locator('[name="carry"]').fill('Five-night capsule and chargers');
     await page.locator('#logisticsForm button.primary').click();
-    assert.match(await page.locator('.transition-card').first().innerText(), /10:00/);
+    assert.match(await page.locator('.transition-card').filter({has:page.locator('[data-edit-logistics="transition:move1"]')}).innerText(), /10:00/);
     await page.locator('[data-edit-logistics="baggage:return"]').click();
     for (const [name,value] of Object.entries({allowedCount:'1',limitKg:'23',weight0:'24',weight1:'10',shoppingKg:'15'})) await page.locator(`[name="${name}"]`).fill(value);
     await page.locator('#logisticsForm button.primary').click();
@@ -56,7 +56,7 @@ const server = http.createServer((req, res) => {
     const download = await downloadPromise;
     assert.match(download.suggestedFilename(), /v13/);
     const backup = JSON.parse(fs.readFileSync(await download.path(), 'utf8'));
-    assert.equal(backup.transitions[0].checkout, '10:00');
+    assert.equal(backup.transitions.find(x=>x.id==='move1').checkout, '10:00');
     assert.equal(backup.baggage.return.weights[0], 24);
     page.on('dialog', dialog => dialog.accept());
     await page.locator('[data-transition-task="move1:0"]').uncheck();
