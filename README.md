@@ -200,3 +200,8 @@ Each hotel card and Today in Japan show editable nearby stations or bus stops, l
 
 Transit records are included in JSON backups as `hotelTransit`. Older backups receive defaults only when a hotel's list is missing; an intentionally empty list stays empty. Sample resets preserve transit edits. Existing accommodation, dining, transfer and booking records are unchanged.
 
+
+### Compact Research browsing
+
+Research shows two-line note previews with More Notes / Less Notes controls. Category buttons (including existing custom categories) and clickable saved tags narrow the results alongside search, city, status and verification filters. Use Clear Filters to return to all research. Results initially show 12 records; Show 12 More reveals the next group. Add or edit a record to assign its category and comma-separated tags. Browsing filters and note expansion do not change saved records or backups.
+
