@@ -63,3 +63,4 @@
 @media(max-width:850px){body.ops-expanded-view .mobile-data-panel{display:none!important}body.ops-expanded-view .mobile-data-button{display:block!important}}
 
 .modal>p.ops-module-privacy{font-size:12px;font-weight:normal;letter-spacing:0;color:var(--muted);margin:12px 0 16px;line-height:1.5}
+.hotel-transit{margin-top:20px;padding-top:16px;border-top:2px solid var(--line);overflow-wrap:anywhere}.hotel-transit h4{margin:0 0 8px}.hotel-transit h5{font-size:15px;margin:0 0 6px}.hotel-transit-stop{padding:14px 0;border-bottom:1px solid var(--line);margin-bottom:12px}.hotel-transit .transit-hint{font-size:12px}.hotel-transit .logistics-actions{display:flex;flex-wrap:wrap;gap:8px}.hotel-transit button,.hotel-transit a{min-height:44px;display:inline-flex;align-items:center}.hotel-transit small{display:block}
