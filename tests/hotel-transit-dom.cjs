@@ -1,0 +1,26 @@
+const {JSDOM}=require('jsdom');
+const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
+const root=path.resolve(__dirname,'..'),key='marcyJapan2028PlannerV1';
+function boot(state){const dom=new JSDOM(fs.readFileSync(path.join(root,'index.html'),'utf8'),{url:'http://localhost',runScripts:'outside-only',pretendToBeVisual:true});let w=dom.window;w.scrollTo=()=>{};w.confirm=()=>true;if(state)w.localStorage.setItem(key,JSON.stringify(state));w.eval(fs.readFileSync(path.join(root,'app.js'),'utf8'));return dom}
+let dom=boot(),w=dom.window,d=w.document;
+assert.equal(d.querySelectorAll('#lodgingGrid .hotel-transit').length,4);
+assert.equal(d.querySelectorAll('#lodgingGrid .hotel-transit-stop').length,8);
+w.save('baseline',false);const before=JSON.parse(w.localStorage.getItem(key));
+w.openLogisticsEditor('nearby','0-new');
+for(const [k,v] of Object.entries({station:'Test bus stop <img src=x>',lines:'Bus 42',walkMinutes:'5',exit:'North',notes:'Line one\nLine two',sourceUrl:'https://example.com',checkedOn:'2026-10-24'}))d.querySelector(`[name="${k}"]`).value=v;
+d.querySelector('#logisticsForm').dispatchEvent(new w.Event('submit',{bubbles:true,cancelable:true}));
+let saved=JSON.parse(w.localStorage.getItem(key));
+for(const k of ['hotelAddresses','dining','transitions','baggage','bookings','itinerary'])assert.deepEqual(saved[k],before[k]);
+assert.equal(saved.hotelTransit[0][2].notes,'Line one\nLine two');
+assert.equal(d.querySelectorAll('.hotel-transit img').length,0);
+const map=d.querySelector('.hotel-transit a').href;assert.match(map,/travelmode=walking/);
+assert.match(d.querySelector('#todayHotel').textContent,/NEARBY TRANSIT/);
+const migrated=w.migrateBackup(saved);assert.deepEqual(JSON.parse(JSON.stringify(migrated.hotelTransit)),saved.hotelTransit);
+w.resetSampleData();assert.equal(JSON.parse(w.localStorage.getItem(key)).hotelTransit[0].length,3);
+saved.hotelTransit[0]=[];dom.window.close();dom=boot(saved);w=dom.window;d=w.document;
+assert.match(d.querySelector('#lodgingGrid .hotel-transit').textContent,/No nearby transit saved/);
+assert.equal(d.querySelectorAll('#lodgingGrid .hotel-transit-stop').length,6);
+const legacy={...saved};delete legacy.hotelTransit;assert.equal(w.migrateBackup(legacy).hotelTransit[0].length,2);
+assert(w.validateBackup({...saved,hotelTransit:{}}).length);
+assert.equal(w.sanitizeHotelTransit([[{station:'Unsafe',sourceUrl:'javascript:alert(1)'}],[],[],[]])[0][0].sourceUrl,'');
+dom.window.close();console.log('PASS: nearby transit defaults, UI edits, legacy data preservation, reload, backup migration, intentional empty lists, source safety and multiline notes.');

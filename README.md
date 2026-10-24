@@ -194,3 +194,9 @@ There is no service worker or explicit offline cache configured by this expansio
 Checklist completion is a manual readiness record, not proof that an external map or document was downloaded. Test those materials separately. New forms accept reference locations and general notes; there are no card-number, password, document-upload or medical-detail fields. Do not paste secrets into free-text notes.
 
 Run the acceptance checks with `node tests/travel-ops-expansion.cjs` after installing Playwright/Chromium using the existing instructions. `CHROMIUM_PATH` can select an installed browser executable.
+### Nearby accommodation transit
+
+Each hotel card and Today in Japan show editable nearby stations or bus stops, lines, approximate walking minutes, exits, access notes, walking-map links, sources and check dates. Initial entries use official hotel access pages checked October 24, 2026. Shichijo's conflicting exit numbers are flagged for confirmation. Map links open Google Maps and require connectivity; stored details remain available in an already-loaded planner.
+
+Transit records are included in JSON backups as `hotelTransit`. Older backups receive defaults only when a hotel's list is missing; an intentionally empty list stays empty. Sample resets preserve transit edits. Existing accommodation, dining, transfer and booking records are unchanged.
+
