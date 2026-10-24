@@ -40,6 +40,7 @@ const server = http.createServer((req, res) => {
     assert.match(baggage, /exceed your recorded allowance/);
     assert.match(baggage, /exceeds your recorded per-bag limit/);
     assert.match(baggage, /Shopping weight exceeds/);
+    await page.locator('[data-hotel-card="0"] summary').click();
     await page.locator('[data-edit-logistics="address:0"]').click();
     await page.locator('[name="addressJa"]').fill('東京都テスト住所 <img src=x onerror=alert(1)>');
     await page.locator('[name="sourceUrl"]').fill('https://example.com/address');
@@ -82,6 +83,7 @@ const server = http.createServer((req, res) => {
     await page.setViewportSize({width:390,height:844});
     await page.locator('[data-view="logistics"]').click();
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth),true);
+    await page.locator('[data-hotel-card="3"] summary').click();
     await page.locator('#logisticsView [data-show-address="3"]').click();
     assert.equal(await page.locator('#addressCardModal').isVisible(),true);
     await page.screenshot({path:path.join(root,'../v13-mobile.png'),fullPage:true});
