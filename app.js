@@ -286,4 +286,7 @@ $("#themeSelect").onchange=e=>applyPlannerTheme(e.target.value);
 
 render();updateLocalStatus();
 
+// Reuse the existing form, Inbox defaults, validation and local save path.
+$("#quick-capture-fab").onclick=()=>{openResearch();requestAnimationFrame(()=>{if(!$("#researchModal").hidden)$("#recordTitle").focus()})};
 window.japanPlannerReady=true;
+
