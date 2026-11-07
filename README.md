@@ -12,7 +12,7 @@ In **Research**, mark a record **Source verified**, then use **Schedule Activity
 
 ## More V13 planning tools
 
-- **Today in Japan**: choose a trip day to preview the overnight hotel/address, transfer route and luggage notes, activity times, maps, transit details, weather/laundry notes and bookings. Japan Today uses Asia/Tokyo dates; outside the trip it offers a clearly labeled preview. March 21 uses Kadensho, March 22–25 Kyoto Shichijo, March 26–30 Namba, and March 31 is checkout/departure.
+- **Today in Japan**: choose a trip day to preview the overnight hotel/address, transfer route and luggage notes, activity times, maps, transit details, weather/laundry notes and bookings. Japan Today uses Asia/Tokyo dates; outside the trip it offers a clearly labeled preview. March 21 uses Kadensho, March 22–26 Kyoto Shichijo, March 27–31 Namba, and April 1 is checkout/departure.
 - **Places → Schedule**: prefill an itinerary form with the saved name, city, neighborhood and notes. Select the date/time and save; the Place remains in your collection. Empty address, price and transit fields are left for you to complete.
 - **Backup activities**: add an alternative in the itinerary editor, optionally filling it from a saved Place. Use Backup / Use Primary changes the active plan and its displayed cost while retaining the original. Switching does not cancel reservations, and the backup has a flexible time.
 - **Bookings → Budget**: explicitly select an existing expense in the booking editor. Reserved/Paid booking amounts replace that expense's manual actual in displayed budget totals; Paid bookings contribute to paid totals. Several bookings can share an expense and are summed once. Planned/Cancelled contribute zero. Estimates remain unchanged, currency conversions follow the planning rate, and unlinking restores manual values. Deleting an expense unlinks its bookings. Unlinked bookings do not affect Budget.
@@ -24,7 +24,7 @@ In **Research**, mark a record **Source verified**, then use **Schedule Activity
 All new tools are in **Logistics**:
 
 - Four editable Japanese hotel address cards with a large Show Address dialog, copy control and official source links. Source details were checked October 12, 2026; recheck before travel.
-- Four editable hotel/airport transfer plans for March 21, 22, 26 and 31, including checkout, arrival target, route, luggage handoff, essentials and saved readiness checklists.
+- Five editable hotel/airport transfer plans for March 15, 21, 22, 27 and April 1, including checkout, arrival target, route, luggage handoff, essentials and saved readiness checklists.
 - Separate outbound and return baggage plans, initially one and two checked suitcases. Enter your airline/fare, purchased bag allowance, per-suitcase weight limit, measured weights and shopping reserve. Airline limits start blank; they are not inferred from the planned bag count.
 - Existing editable hotel dining details remain available inside each accommodation card.
 - V1–V12 data migrates to V13 using the same browser storage key. New logistics data is included in JSON backups and is preserved by Reset Sample Data.
@@ -34,7 +34,7 @@ All new tools are in **Logistics**:
 
 - Outbound departure is now March 14, 2028, with arrival in Japan on March 15.
 - The countdown, flight tracker, deadline seed, and existing saved V11 data migrate automatically.
-- The in-Japan daily itinerary remains March 15–31 and the lodging plan remains 16 nights.
+- The in-Japan daily itinerary runs March 15–April 1 and includes 17 lodging nights.
 
 ## V11 location update
 
@@ -72,11 +72,11 @@ Open `index.html` in a modern browser. If local-file restrictions interfere, run
 
 ## Full scope
 
-- March 14, 2028 departure countdown and 16-night Japan route
-- Editable expense manager seeded with the corrected $6,457 budget
+- March 14, 2028 departure countdown and 17-night Japan route
+- Editable expense manager seeded with the corrected $6,602 budget
 - Estimated and actual costs, paid status, due dates, notes, automatic totals, and budget warnings
 - $807.13 post-graduation savings schedule with an editable current-savings amount
-- Seventeen-day itinerary covering March 15–31, 2028
+- Eighteen-day itinerary covering March 15–April 1, 2028
 - Morning, afternoon, and evening plans with city, neighborhood, reservation time, address/map link, transit notes, confirmation number, and fixed/flexible status
 - USD or JPY activity costs with an adjustable planning exchange rate and automatic conversions
 - Editable deadline timeline seeded with the original eighteen milestones
@@ -95,7 +95,7 @@ Open `index.html` in a modern browser. If local-file restrictions interfere, run
 - Medication, health, customs, and document-readiness checklist
 - Local emergency-reference form for embassy, insurance, allergies, medications, and contacts
 - Document vault index that stores location references rather than sensitive scans
-- Seventeen-day manual weather, rain, and laundry plan
+- Eighteen-day manual weather, rain, and laundry plan
 - Eighteen-step booking and compliance timeline
 - General Research Inbox with verification and promotion workflow
 - Dedicated TikTok/Instagram discovery inbox using city, neighborhood, spot, category, key order/tip, priority, and source link
@@ -205,3 +205,5 @@ Transit records are included in JSON backups as `hotelTransit`. Older backups re
 
 Research shows two-line note previews with More Notes / Less Notes controls. Category buttons (including existing custom categories) and clickable saved tags narrow the results alongside search, city, status and verification filters. Use Clear Filters to return to all research. Results initially show 12 records; Show 12 More reveals the next group. Add or edit a record to assign its category and comma-separated tags. Browsing filters and note expansion do not change saved records or backups.
 
+
+The March 14–April 1, 2028 plan adds one Kyoto night ($665 provisional Kyoto estimate; $2,465 lodging total). The return flight search is Saturday, April 1, KIX → SEA. Older backups update recognizable original samples and keep custom notes, actual costs, confirmed bookings, and itinerary dates.
