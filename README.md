@@ -206,4 +206,8 @@ Transit records are included in JSON backups as `hotelTransit`. Older backups re
 Research shows two-line note previews with More Notes / Less Notes controls. Category buttons (including existing custom categories) and clickable saved tags narrow the results alongside search, city, status and verification filters. Use Clear Filters to return to all research. Results initially show 12 records; Show 12 More reveals the next group. Add or edit a record to assign its category and comma-separated tags. Browsing filters and note expansion do not change saved records or backups.
 
 
+### Quick capture from any section
+
+Use the floating **+** button to open a fresh Research record with the title field focused. A title is enough to save; optionally add a source link, notes, category or tags. New records start in Inbox and remain unverified. The button sits above mobile navigation, follows the selected theme, and hides while a dialog or the mobile backup menu is open. Captures use the existing local save, validation and JSON backup workflow.
+
 The March 14–April 1, 2028 plan adds one Kyoto night ($665 provisional Kyoto estimate; $2,465 lodging total). The return flight search is Saturday, April 1, KIX → SEA. Older backups update recognizable original samples and keep custom notes, actual costs, confirmed bookings, and itinerary dates.
